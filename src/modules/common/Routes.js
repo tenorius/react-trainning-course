@@ -20,7 +20,7 @@ class Routes extends Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route exact path="/pokedex" component={Pokedex} />
+          <Route exact path="/" component={Pokedex} />
         </Switch>
       </Suspense>
     );
