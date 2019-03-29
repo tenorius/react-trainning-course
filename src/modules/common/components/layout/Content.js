@@ -1,5 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
+import media from "../../utils/styles";
 const Styled = {};
 
 Styled.wrapper = styled.section`
@@ -13,6 +14,12 @@ Styled.wrapper = styled.section`
   Content-repeat:  repeat-x;
   Content-position: center;
   z-index: 1;
+  
+  ${media.sm}{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
 `;
 
 const Content = ({className, children}) => {
