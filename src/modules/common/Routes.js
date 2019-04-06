@@ -3,6 +3,7 @@ import { Route, Switch } from 'react-router-dom';
 
 
 const Pokedex = lazy(() => import('../pokedex/index'));
+const Search = lazy(() => import('../search/index'));
 
 /**
  * Defines components to routes mapping.
@@ -20,7 +21,7 @@ class Routes extends Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route exact path="/" component={Pokedex} />
+          <Route exact path="/" component={Search} />
         </Switch>
       </Suspense>
     );
