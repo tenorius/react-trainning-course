@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import MenuItem from '@material-ui/core/MenuItem';
 import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
@@ -11,7 +12,7 @@ import SearchIcon from '@material-ui/icons/Search';
 import HeartIcon from '@material-ui/icons/Favorite';
 import PokeballIcon from '@material-ui/icons/Album';
 import TurnIcon from '@material-ui/icons/Autorenew';
-import Typography from "@material-ui/core/Typography";
+import Typography from "@material-ui/core/Typography/Typography";
 
 const Styled = {};
 Styled.SearchContainer = styled.div`
@@ -41,6 +42,10 @@ Styled.SearchButton = styled(Button)`
 
 Styled.PaginationButton = styled(Button)`
   width: 84px!important;
+`;
+
+Styled.P = styled.p`
+  color: white;
 `;
 
 Styled.ResultsContainer = styled.div`

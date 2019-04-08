@@ -5,6 +5,7 @@ const Styled = {};
 
 Styled.wrapper = styled.section`
   padding-top: 64px;
+  overflow: scroll;
   position: fixed;
   top: 0;
   bottom: 0;

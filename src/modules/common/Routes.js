@@ -21,7 +21,7 @@ class Routes extends Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route exact path="/" component={Search} />
+          <Route exact path="/" component={Pokedex} />
         </Switch>
       </Suspense>
     );
