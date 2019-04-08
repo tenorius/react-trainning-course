@@ -58,7 +58,6 @@ Styled.StatsDisplay = styled.div`
   .title{
     position: absolute;
     top: 16px;
-   
   }
   
   .bar {
