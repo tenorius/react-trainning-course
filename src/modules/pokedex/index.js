@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Background from "../common/components/layout/Background";
+import Background from "../protected/components/layout/Background";
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import PreviousIcon from '@material-ui/icons/ArrowBackIos';
 import NextIcon from '@material-ui/icons/ArrowForwardIos';
 import Typography from "@material-ui/core/Typography";
 
-import Content from "../common/components/layout/Content";
+import Content from "../protected/components/layout/Content";
 
 const Styled = {};
 Styled.NavContainer = styled(Grid)`

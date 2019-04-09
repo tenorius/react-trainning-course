@@ -5,13 +5,13 @@ import TextField from '@material-ui/core/TextField';
 import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
 import Chip from '@material-ui/core/Chip';
-import Background from "../common/components/layout/Background";
-import Content from "../common/components/layout/Content";
+import Background from "../protected/components/layout/Background";
+import Content from "../protected/components/layout/Content";
 import SearchIcon from '@material-ui/icons/Search';
-import HeartIcon from '@material-ui/icons/Favorite';
-import PokeballIcon from '@material-ui/icons/Album';
-import TurnIcon from '@material-ui/icons/Autorenew';
+
 import Typography from "@material-ui/core/Typography";
+import PokemonCard from "../common/components/PokemonCard";
+import PokemonCardList from "../common/components/PokemonCardList";
 
 const Styled = {};
 Styled.SearchContainer = styled.div`
@@ -51,57 +51,14 @@ Styled.ResultsContainer = styled.div`
   list-style: none;
   margin: 0;
   margin-bottom: 1.5rem;
+  
 `;
 
 Styled.PaginationContainer = styled(Grid)`
   margin-bottom: 1.5rem;
 `;
 
-Styled.PokemonCard = styled(Paper)`
-   padding: 8px;
-   border: 1px solid lightgray;
-   border-radius: 6px;
-   height: 250px;
-   flex: 0 1 calc(50% - 8px);
-   list-style: none;
-   
-   &:nth-child(odd) {
-    margin: 0 8px 8px 0;
-   }
-   
-   &:nth-child(even) {
-    margin: 0 0 8px 8px;
-   }
-   
-   .actions{
-      display: flex;
-      justify-content: center;
-      background-color: white;
-      width: 80%;
-      margin: auto;
-      margin-top: -16px;
-      border-radius: 32px 32px 0 0;
-      z-index: 2;
-      position: relative;
-     svg {
-       margin: 0 6px;
-     }
-   }
-   .figure {
-      height: 150px;
-      width: 100%;
-      overflow: hidden;
-      position: relative;
-      background-color: aliceblue;
-   
-      img{
-        width: 100%;
-        height: auto;
-        transform: scale(2);
-        position: absolute;
-      }
-   }
-`;
+
 
 const PaginationComponent = (
   <Styled.PaginationContainer container justify="space-around">
@@ -149,31 +106,12 @@ class Index extends Component {
             </form>
           </Styled.SearchContainer>
           {PaginationComponent}
-          <Styled.ResultsContainer>
-            <Styled.PokemonCard>
-              <div className="figure">
-                <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"} alt={"bumba"}/>
-              </div>
-              <div className="actions">
-                <HeartIcon />
-                <PokeballIcon />
-                <TurnIcon />
-              </div>
-              <div className="info">
-                <Typography variant="caption" color="inherit" >
-                  #001
-                </Typography>
-                <Typography variant="h6" color="inherit" >
-                  Bulbasaur
-                </Typography>
-                <Chip label="Grass"/>
-                <Chip label="Venom"/>
-              </div>
-            </Styled.PokemonCard>
-            <Styled.PokemonCard>
-            
-            </Styled.PokemonCard>
-          </Styled.ResultsContainer>
+          <PokemonCardList>
+            <PokemonCard/>
+            <PokemonCard/>
+            <PokemonCard/>
+            <PokemonCard/>
+          </PokemonCardList>
           {PaginationComponent}
         </Content>
       </>

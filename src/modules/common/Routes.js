@@ -1,9 +1,9 @@
 import React, { Component, Suspense, lazy } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
+import PrivateRoute from "./components/PrivateRoute";
 
-
-const Pokedex = lazy(() => import('../pokedex/index'));
-const Search = lazy(() => import('../search/index'));
+const Login = lazy(() => import('../login/index'));
+const ProtectedArea = lazy(() => import('../protected/index'));
 
 /**
  * Defines components to routes mapping.
@@ -21,7 +21,9 @@ class Routes extends Component {
     return (
       <Suspense fallback={null}>
         <Switch>
-          <Route exact path="/" component={Pokedex} />
+          <Route exact path="/login" component={Login} />
+          <Route path="/" component={ProtectedArea} />
+          <Redirect to={{ pathname: '/not-found' }} />
         </Switch>
       </Suspense>
     );
