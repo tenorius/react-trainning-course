@@ -1,7 +1,7 @@
 import React, { Suspense } from 'react';
 
-import Header from "./components/layout/header/Header";
-import Main from "./components/layout/Main";
+import Header from "../common/components/layout/Header";
+import Main from "../common/components/layout/Main";
 import Routes from "./Routes";
 
 const AppLayout = () => {

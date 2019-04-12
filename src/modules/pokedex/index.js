@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Background from "../protected/components/layout/Background";
+import Background from "../common/components/layout/Background";
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import styled from 'styled-components';
@@ -8,7 +8,7 @@ import PreviousIcon from '@material-ui/icons/ArrowBackIos';
 import NextIcon from '@material-ui/icons/ArrowForwardIos';
 import Typography from "@material-ui/core/Typography";
 
-import Content from "../protected/components/layout/Content";
+import Content from "../common/components/layout/Content";
 
 const Styled = {};
 
@@ -98,12 +98,12 @@ class Index extends Component {
         <Content>
           <Grid container justify="space-between" style={{ marginBottom: '0.5rem'}}>
             <Styled.NavButton>
-              <PreviousIcon />
+              <PreviousIcon fontSize={"small"}/>
               #900
             </Styled.NavButton>
             <Styled.NavButton>
               #002
-              <NextIcon />
+              <NextIcon fontSize={"small"} />
             </Styled.NavButton>
           </Grid>
           <Styled.PokemonSection>

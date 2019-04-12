@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
-import Background from "../protected/components/layout/Background";
-import Content from "../protected/components/layout/Content";
+import Background from "../common/components/layout/Background";
+import Content from "../common/components/layout/Content";
 import SearchIcon from '@material-ui/icons/Search';
 
 import Typography from "@material-ui/core/Typography";
@@ -70,6 +70,7 @@ Styled.PaginationContainer = styled(Grid)`
   p{
     color: ${props => props.theme.palette.text.secondary};
     font-size: 0.8rem;
+    margin: 0;
   }
   
   

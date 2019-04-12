@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
-import Content from "../protected/components/layout/Content";
+import Content from "../common/components/layout/Content";
 import PokemonCard from "../common/components/PokemonCard";
 
 const Styled = {};

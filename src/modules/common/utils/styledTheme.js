@@ -9,7 +9,7 @@ const theme = {
       light: "#f6685e",
       main: "#f44336",
       dark: "#aa2e25",
-      contrastText: "#000",
+      contrastText: "#fff",
     },
     secondary: {
       light: "#637bfe",

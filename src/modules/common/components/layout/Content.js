@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import media from "../../../common/utils/styles";
+import media from "../../utils/styles";
 const Styled = {};
 
 Styled.wrapper = styled.section`

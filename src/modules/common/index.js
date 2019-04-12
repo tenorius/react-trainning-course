@@ -4,9 +4,9 @@ import { ThemeProvider } from 'styled-components';
 import muiTheme from './utils/muiTheme';
 import styledTheme from './utils/styledTheme';
 import './App.css';
-import Header from "../protected/components/layout/header/Header";
-import Body from "../protected/components/layout/Body";
-import Main from "../protected/components/layout/Main";
+import Header from "./components/layout/Header";
+import Body from "./components/layout/Body";
+import Main from "./components/layout/Main";
 import Routes from "./Routes";
 
 class Index extends Component {
