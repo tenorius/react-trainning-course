@@ -11,12 +11,9 @@ import Typography from "@material-ui/core/Typography";
 import Content from "../protected/components/layout/Content";
 
 const Styled = {};
-Styled.NavContainer = styled(Grid)`
-  margin-bottom: 1.5rem;
-`;
 
 Styled.NavButton = styled(Button)`
-  width: 50%;
+  color: ${props => props.theme.palette.text.secondary}!important;
 `;
 
 Styled.PokemonSection = styled.section`
@@ -99,19 +96,19 @@ class Index extends Component {
       <>
         {/*<Background/>*/}
         <Content>
-          <Styled.NavContainer container>
-            <Styled.NavButton variant="outlined" color="secondary">
+          <Grid container justify="space-between" style={{ marginBottom: '0.5rem'}}>
+            <Styled.NavButton>
               <PreviousIcon />
               #900
             </Styled.NavButton>
-            <Styled.NavButton variant="outlined" color="secondary">
+            <Styled.NavButton>
               #002
               <NextIcon />
             </Styled.NavButton>
-          </Styled.NavContainer>
+          </Grid>
           <Styled.PokemonSection>
-            <Typography variant={"h4"} gutterBottom={"1.5rem"} align={"center"} color={"inherit"} >
-              Bulbasaur #001
+            <Typography variant={"h4"} style={{ marginBottom: '1.5rem'}} align={"center"}>
+              Bulbasaur <span style={{color: 'gray'}}>#001</span>
             </Typography>
             <Styled.PokemonPicture>
               <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"} alt={"bumba"}/>

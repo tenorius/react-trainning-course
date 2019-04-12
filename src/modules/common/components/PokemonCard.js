@@ -1,12 +1,11 @@
 import React from 'react';
 import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
-import Typography from "@material-ui/core/Typography";
-import Chip from "@material-ui/core/Chip";
 import HeartIcon from '@material-ui/icons/Favorite';
 import PokeballIcon from '../../../assets/images/pokeball.svg';
 import TurnIcon from '@material-ui/icons/Autorenew';
 import IconButton from '@material-ui/core/IconButton';
+import Typography from "@material-ui/core/Typography/Typography";
 
 const Styled = {};
 Styled.Wrapper = styled(Paper)`
@@ -16,14 +15,14 @@ Styled.Wrapper = styled(Paper)`
    border-radius: 6px;
    height: 250px;
    max-width: 200px;
-   min-width: 180px;
+   min-width: 150px;
    flex: 1 1;
    
    .actions{
       display: flex;
       justify-content: center;
       background-color: white;
-      width: 80%;
+      width: 90%;
       margin: auto;
       margin-top: -16px;
       border-radius: 32px 32px 0 0;
@@ -34,7 +33,7 @@ Styled.Wrapper = styled(Paper)`
      }
    }
    .figure {
-      height: 150px;
+      height: 130px;
       width: 100%;
       overflow: hidden;
       background-color: aliceblue;
@@ -43,6 +42,27 @@ Styled.Wrapper = styled(Paper)`
         width: 100%;
         height: auto;
       }
+   }
+   .id{
+    color: #919191;
+    font-size: 0.8rem;
+    margin: 0;
+   }
+   
+   .name{
+    margin: 0;
+   }
+   
+   .type{
+    display: inline-block;
+    background: forestgreen;
+    font-size: 10px;
+    line-height: 20px;
+    text-align: center;
+    margin: 0 4px 0 0;
+    min-width: 60px;
+    color: white;
+    border-radius: 3px;
    }
 `;
 
@@ -71,14 +91,18 @@ const PokemonCard = () => {
         </Styled.IconButton>
       </div>
       <div className="info">
-        <Typography variant="caption" color="inherit" >
+        <p className="id">
           #001
-        </Typography>
-        <Typography variant="h6" color="inherit" >
+        </p>
+        <Typography variant="h6" color="textPrimary">
           Bulbasaur
         </Typography>
-        <Chip label="Grass"/>
-        <Chip label="Venom"/>
+        <span className="type">
+          Grass
+        </span>
+        <span className="type">
+          Venom
+        </span>
       </div>
     </Styled.Wrapper>
   );

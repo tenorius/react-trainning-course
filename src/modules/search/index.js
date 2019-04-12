@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
 import TextField from '@material-ui/core/TextField';
-import Paper from '@material-ui/core/Paper';
 import Button from '@material-ui/core/Button';
-import Chip from '@material-ui/core/Chip';
 import Background from "../protected/components/layout/Background";
 import Content from "../protected/components/layout/Content";
 import SearchIcon from '@material-ui/icons/Search';
@@ -15,7 +13,7 @@ import PokemonCardList from "../common/components/PokemonCardList";
 
 const Styled = {};
 Styled.SearchContainer = styled.div`
-  background-color: lightgray;
+  background-color: ${props => props.theme.palette.background.default};
   padding: 16px;
   margin-bottom: 1.5rem;
 
@@ -33,14 +31,23 @@ Styled.Input = styled.input`
   height: 34px;
 `;
 
+Styled.SearchInput = styled(TextField)`
+  flex: 1!important;
+`;
+
 Styled.SearchButton = styled(Button)`
+  flex: none;
   height: 56px;
   color: white;
   margin: 4px 0 0 8px!important;
 `;
 
-Styled.PaginationButton = styled(Button)`
-  width: 84px!important;
+Styled.PaginationButton = styled.a`
+  text-align: center;
+  flex: 1 1 33%;
+  text-decoration: underline;
+  color: ${props => props.theme.palette.text.secondary};
+
 `;
 
 Styled.ResultsContainer = styled.div`
@@ -56,6 +63,16 @@ Styled.ResultsContainer = styled.div`
 
 Styled.PaginationContainer = styled(Grid)`
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  
+  p{
+    color: ${props => props.theme.palette.text.secondary};
+    font-size: 0.8rem;
+  }
+  
+  
 `;
 
 
@@ -65,9 +82,9 @@ const PaginationComponent = (
     <Styled.PaginationButton  color="secondary" size="small">
       Previous
     </Styled.PaginationButton>
-    <Typography variant="caption" color="inherit">
+    <p>
       1 - 20
-    </Typography>
+    </p>
     <Styled.PaginationButton  color="secondary" size="small">
       Next
     </Styled.PaginationButton>
@@ -88,7 +105,7 @@ class Index extends Component {
                 justify=""
                 alignItems="center"
               >
-                <TextField
+                <Styled.SearchInput
                   id="outlined-name"
                   label="Name or ID"
                   value={""}
@@ -96,11 +113,11 @@ class Index extends Component {
                   margin="normal"
                   variant="outlined"
                 />
-                <Styled.SearchButton variant="contained" color="primary">
+                <Styled.SearchButton variant="contained" color="secondary">
                   <SearchIcon />
                 </Styled.SearchButton>
               </Grid>
-              <Typography variant="body1" color="inherit" >
+              <Typography variant="body2" color="textSecondary">
                 Use the Advanced Search to explore Pokémon by type, weakness, Ability, and more!
               </Typography>
             </form>
