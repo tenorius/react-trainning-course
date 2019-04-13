@@ -4,15 +4,15 @@ import routeRegistry from '../common/utils/routesRegistry'
 
 const Pokedex = lazy(() => import('../pokedex/index'));
 const Search = lazy(() => import('../search/index'));
-const MyPokemon = lazy(() => import('../myPokemon/index'));
+const Team = lazy(() => import('../team/index'));
 
 
 const routes = [
   {
-    path: "/my-pokemon",
-    component: MyPokemon,
+    path: "/team",
+    component: Team,
     exact: true,
-    name: "My Pokemon",
+    name: "My Team",
   },
   {
     path: "/search",

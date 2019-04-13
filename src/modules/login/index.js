@@ -38,7 +38,6 @@ Styled.LoginTextField = styled(TextField)`
   .MuiOutlinedInput-root-150.MuiOutlinedInput-focused-151 .MuiOutlinedInput-notchedOutline-157{
     border-color: ${props => props.theme.palette.secondary.main} ;
   }
-  
 `;
 
 

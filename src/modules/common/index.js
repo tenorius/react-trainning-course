@@ -8,6 +8,7 @@ import Header from "./components/layout/Header";
 import Body from "./components/layout/Body";
 import Main from "./components/layout/Main";
 import Routes from "./Routes";
+import Nav from "./components/layout/Nav";
 
 class Index extends Component {
   render() {
@@ -16,6 +17,7 @@ class Index extends Component {
         <ThemeProvider theme={styledTheme}>
           <Body className="App">
             <Header className="App-header"/>
+            <Nav />
             <Main>
               <Routes/>
             </Main>

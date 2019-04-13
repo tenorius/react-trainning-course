@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Typography from "@material-ui/core/Typography/Typography";
 import Content from "../common/components/layout/Content";
 import PokemonCard from "../common/components/PokemonCard";
+import PokemonCardList from "../common/components/PokemonCardList";
 
 const Styled = {};
 Styled.SearchContainer = styled.div`
@@ -17,7 +19,14 @@ class Index extends Component {
       <>
         {/*<Background/>*/}
         <Content>
-          <PokemonCard/>
+          <PokemonCardList>
+            <PokemonCard/>
+            <PokemonCard/>
+            <PokemonCard/>
+            <PokemonCard/>
+            <PokemonCard/>
+            <PokemonCard/>
+          </PokemonCardList>
         </Content>
       </>
     );

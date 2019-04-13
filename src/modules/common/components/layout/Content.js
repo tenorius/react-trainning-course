@@ -1,10 +1,10 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import media from "../../utils/styles";
 const Styled = {};
 
 Styled.wrapper = styled.section`
-  padding-top: 64px;
+  padding-top: 56px;
+  padding-bottom: 56px;
   overflow: scroll;
   position: fixed;
   top: 0;
