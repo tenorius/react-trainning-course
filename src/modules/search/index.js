@@ -6,6 +6,7 @@ import Button from '@material-ui/core/Button';
 import Background from "../common/components/layout/Background";
 import Content from "../common/components/layout/Content";
 import SearchIcon from '@material-ui/icons/Search';
+import MoreVertIcon from '@material-ui/icons/MoreVert';
 
 import Typography from "@material-ui/core/Typography";
 import PokemonCard from "../common/components/PokemonCard";
@@ -116,6 +117,9 @@ class Index extends Component {
                 />
                 <Styled.SearchButton variant="contained" color="secondary">
                   <SearchIcon />
+                </Styled.SearchButton>
+                <Styled.SearchButton variant="contained" color="primary">
+                  <MoreVertIcon />
                 </Styled.SearchButton>
               </Grid>
               <Typography variant="body2" color="textSecondary">
