@@ -32,16 +32,16 @@ Styled.NavButton = styled(Button)`
   color: ${props => props.theme.palette.primary.contrastText}!important;
 `;
 
-const NavPokedex = ({stats}) => {
+const NavPokedex = ({next, previous, nextId, previousId}) => {
   
   return (
     <Styled.Wrapper container justify="space-between" style={{ marginBottom: '0.5rem'}}>
-      <Styled.NavButton>
+      <Styled.NavButton onClick={previous}>
         <PreviousIcon fontSize={"small"}/>
-        #900
+        {`#${previousId}`}
       </Styled.NavButton>
-      <Styled.NavButton>
-        #002
+      <Styled.NavButton onClick={next}>
+        {`#${nextId}`}
         <NextIcon fontSize={"small"} />
       </Styled.NavButton>
     </Styled.Wrapper>

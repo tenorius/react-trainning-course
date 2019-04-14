@@ -17,6 +17,7 @@ Styled.AccountButton = styled(Button)`
 
 class Header extends Component {
   render() {
+    console.log(this.props);
     return (
       <AppBar position="fixed">
         <Toolbar>

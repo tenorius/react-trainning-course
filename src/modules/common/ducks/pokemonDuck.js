@@ -8,12 +8,19 @@ const createActionName = name => `common/duck/pokemon/${name}`;
 
 const types = {
   STORE_POKEMON: createActionName('STORE_POKEMON'),
-  FETCH_POKEMON: createActionName('FETCH_POKEMON'),
+  STORE_POKEMON_SPECIES: createActionName('STORE_POKEMON_SPECIES'),
+  FETCH_POKEMON_FAIL: createActionName('FETCH_POKEMON_FAIL'),
 };
 
 const actions = {
+  fetchPokemonFail: () => (
+    { type: types.FETCH_POKEMON_FAIL }
+  ),
   storePokemon: (pokemon) => (
     { type: types.STORE_POKEMON, pokemon }
+  ),
+  storePokemonSpecies: (species, id) => (
+    { type: types.STORE_POKEMON_SPECIES, species, id }
   ),
 };
 
@@ -27,7 +34,19 @@ const operations = {
         // dispatch(appLoadingEnd());
       })
       .catch(() => {
-        dispatch(actions.searchFail());
+        dispatch(actions.fetchPokemonFail());
+        // dispatch(appLoadingEnd());
+      })
+  },
+  fetchPokemonSpecies: (id) => (dispatch) => {
+    // dispatch(appLoadingStart());
+    return commonApi.getPokemonSpecies(id)
+      .then((response) => {
+        dispatch(actions.storePokemonSpecies(response.data, id));
+        // dispatch(appLoadingEnd());
+      })
+      .catch(() => {
+        dispatch(actions.fetchPokemonFail());
         // dispatch(appLoadingEnd());
       })
   },
@@ -39,6 +58,18 @@ const pokemonByIdsReducer = (state = {}, action) => {
       return {
         ...state,
         [action.pokemon.id]: action.pokemon
+      };
+    case types.STORE_POKEMON_SPECIES:
+      return {
+        ...state,
+        [action.id]: {
+          ...state[action.id],
+          flavorText: action.species.flavor_text_entries
+            .find((item)=>(item.language.name === 'en'))
+            .flavor_text,
+          habitat: action.species.habitat ? action.species.habitat.name : "",
+          shape: action.species.shape ? action.species.shape.name : "",
+        }
       };
     default:
       return state;

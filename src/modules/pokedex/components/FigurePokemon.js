@@ -14,10 +14,13 @@ Styled.Wrapper = styled.div`
   background-color: ${props => props.theme.palette.grey[100]};
   border-radius: ${props => props.theme.shaping.borderRadius * 2}px;
   margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
   img{
-    width: 100%;
-    height: auto;
-    transform: scale(2);
+    width: auto;
+    height: 100%;
+    transform: scale(1.2);
     position: absolute;
   }
 `;
