@@ -3,6 +3,7 @@ import React, { Suspense } from 'react';
 import Header from "../common/components/layout/Header";
 import Main from "../common/components/layout/Main";
 import Routes from "./Routes";
+import Nav from "../common/components/layout/Nav";
 
 const AppLayout = () => {
   return (
@@ -13,6 +14,7 @@ const AppLayout = () => {
           <Routes/>
         </Suspense>
       </Main>
+      <Nav/>
     </>
   );
 };

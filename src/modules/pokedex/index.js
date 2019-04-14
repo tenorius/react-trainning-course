@@ -10,6 +10,10 @@ import NavPokedex from "./components/NavPokedex";
 import StatsBox from "./components/StatsBox";
 import FigurePokemon from "./components/FigurePokemon";
 import InfoBox from "./components/infoBox";
+import {bindActionCreators} from "redux";
+import {operations} from "../common/ducks/pokemonDuck";
+import connect from "react-redux/es/connect/connect";
+import {withRouter} from "react-router-dom";
 
 const Styled = {};
 
@@ -18,6 +22,14 @@ Styled.PokemonSection = styled.section`
 `;
 
 class Index extends Component {
+  
+  componentDidMount(){
+    const { id } = this.props.match.params;
+    if(!this.props.pokemon){
+      console.log('nao encontorou o pokemon')
+    }
+  }
+  
   render() {
     return (
       <>
@@ -42,4 +54,15 @@ class Index extends Component {
   }
 }
 
-export default Index;
+const mapStateToProps = (state, ownProps) => {
+  debugger;
+  return {
+    pokemon: state.pokemon.byIds[ownProps.match.params.id]
+  }
+};
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(operations, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Index);
+

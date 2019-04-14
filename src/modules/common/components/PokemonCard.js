@@ -1,4 +1,7 @@
-import React from 'react';
+import React, {Component} from 'react';
+import { withRouter } from 'react-router-dom'
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 import styled from "styled-components";
 import Paper from "@material-ui/core/Paper";
 import HeartIcon from '@material-ui/icons/Favorite';
@@ -6,6 +9,10 @@ import PokeballIcon from '../../../assets/images/pokeball.svg';
 import TurnIcon from '@material-ui/icons/Autorenew';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from "@material-ui/core/Typography/Typography";
+
+import {operations} from '../ducks/pokemonDuck';
+import spritesConstants from "../constants/spritesConstants";
+import capitalize from "../utils/capitalize";
 
 const Styled = {};
 Styled.Wrapper = styled(Paper)`
@@ -37,10 +44,17 @@ Styled.Wrapper = styled(Paper)`
       width: 100%;
       overflow: hidden;
       background-color: aliceblue;
+      display: flex;
+      justify-content: center;
+      position: relative;
+      align-items: center;
    
       img{
-        width: 100%;
-        height: auto;
+        width: auto;
+        height: 100%;
+        position: relative;
+        margin: 0 auto;
+        transform: scale(1.5);
       }
    }
    .id{
@@ -73,39 +87,67 @@ Styled.IconButton = styled(IconButton)`
   color: ${props => (props.iconColor)}!important;
 `;
 
-const PokemonCard = () => {
-  return (
-    <Styled.Wrapper>
-      <div className="figure">
-        <img src={"https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png"} alt={"bumba"}/>
-      </div>
-      <div className="actions">
-        <Styled.IconButton iconColor={"darkred"}>
-          <HeartIcon />
-        </Styled.IconButton>
-        <Styled.IconButton iconColor={"black"}>
-          <img src={PokeballIcon}/>
-        </Styled.IconButton>
-        <Styled.IconButton>
-          <TurnIcon />
-        </Styled.IconButton>
-      </div>
-      <div className="info">
-        <p className="id">
-          #001
-        </p>
-        <Typography variant="h6" color="textPrimary">
-          Bulbasaur
-        </Typography>
-        <span className="type">
-          Grass
-        </span>
-        <span className="type">
-          Venom
-        </span>
-      </div>
-    </Styled.Wrapper>
-  );
+class PokemonCard extends Component {
+  state = {
+    currentSprite: spritesConstants.FRONT_DEFAULT,
+  };
+  
+  handleCardClick = () => {
+    this.props.history.push(`/pokedex/${this.props.pokemon.id}`)
+  };
+  
+  componentDidMount() {
+    console.log('first render, pokemon:', this.props.pokemon);
+    if (this.props.pokemon) {
+      //this.props.actions.fetchPokemon(this.props.id);
+    }
+  }
+  
+  render() {
+    console.log('pokemon:', this.props.pokemon);
+    const {pokemon} = this.props;
+    const {currentSprite} = this.state;
+    if(!pokemon) return <Styled.Wrapper />
+    return (
+      <Styled.Wrapper onClick={this.handleCardClick}>
+        <div className="figure">
+          <img src={pokemon.sprites[this.state.currentSprite]}
+               alt={`sprite ${pokemon.name} ${currentSprite}`}/>
+        </div>
+        <div className="actions">
+          <Styled.IconButton iconColor={"darkred"}>
+            <HeartIcon/>
+          </Styled.IconButton>
+          <Styled.IconButton iconColor={"black"}>
+            <img src={PokeballIcon}/>
+          </Styled.IconButton>
+          <Styled.IconButton>
+            <TurnIcon/>
+          </Styled.IconButton>
+        </div>
+        <div className="info">
+          <p className="id">
+            {`#${pokemon.id}`}
+          </p>
+          <Typography variant="h6" color="textPrimary">
+            {capitalize(pokemon.name)}
+          </Typography>
+          {pokemon.types.map((item) => (
+            (<span className="type">
+                {capitalize(item.type.name)}
+              </span>)
+          ))}
+        </div>
+      </Styled.Wrapper>
+    );
+  }
 };
 
-export default PokemonCard;
+const mapStateToProps = (state, ownProps) => ({
+  pokemon: state.pokemon.byIds[ownProps.id]
+});
+const mapDispatchToProps = dispatch => ({
+  actions: bindActionCreators(operations, dispatch),
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PokemonCard));

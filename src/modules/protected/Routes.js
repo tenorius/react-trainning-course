@@ -21,7 +21,7 @@ const routes = [
     name: "Search",
   },
   {
-    path: "/pokedex",
+    path: "/pokedex/:id",
     component: Pokedex,
     exact: true,
     name: "Pokedex",

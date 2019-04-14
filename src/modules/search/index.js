@@ -11,6 +11,8 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import Typography from "@material-ui/core/Typography";
 import PokemonCard from "../common/components/PokemonCard";
 import PokemonCardList from "../common/components/PokemonCardList";
+import { connect } from 'react-redux';
+import { operations } from './ducks/searchDuck';
 
 const Styled = {};
 Styled.SearchContainer = styled.div`
@@ -18,18 +20,6 @@ Styled.SearchContainer = styled.div`
   padding: 16px;
   margin-bottom: 1.5rem;
 
-`;
-
-Styled.Label = styled.label`
-  color: white;
-  display: block;
-  margin: 8px 0;
-  font-size: 1.5rem;
-`;
-
-Styled.Input = styled.input`
-  border-radius: 8px 0 0 8px;
-  height: 34px;
 `;
 
 Styled.SearchInput = styled(TextField)`
@@ -51,17 +41,6 @@ Styled.PaginationButton = styled.a`
 
 `;
 
-Styled.ResultsContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  padding: 0 16px;
-  list-style: none;
-  margin: 0;
-  margin-bottom: 1.5rem;
-  
-`;
-
 Styled.PaginationContainer = styled(Grid)`
   margin-bottom: 1.5rem;
   display: flex;
@@ -76,8 +55,6 @@ Styled.PaginationContainer = styled(Grid)`
   
   
 `;
-
-
 
 const PaginationComponent = (
   <Styled.PaginationContainer container justify="space-around">
@@ -94,6 +71,36 @@ const PaginationComponent = (
 );
 
 class Index extends Component {
+  
+  state = {
+    searchInput: {
+      value: '',
+      type: 'text',
+      label: 'Name or ID',
+    },
+    searchType: 'pokemon',
+  };
+  
+  componentDidMount() {
+  
+  }
+  
+  handleSearchInput = (event) => {
+    const { value } = event.target;
+    this.setState( prevState => ({
+      ...prevState,
+        searchInput: {
+          ...prevState.searchInput,
+          value: value
+        }
+      })
+    )
+  };
+  
+  search = () => {
+    this.props.searchByPokemonRequest(this.state.searchInput.value, this.state.searchType)
+  };
+  
   render() {
     return (
       <>
@@ -110,12 +117,15 @@ class Index extends Component {
                 <Styled.SearchInput
                   id="outlined-name"
                   label="Name or ID"
-                  value={""}
-                  onChange={()=>{}}
+                  value={this.state.searchInput.value}
+                  onChange={this.handleSearchInput}
                   margin="normal"
                   variant="outlined"
                 />
-                <Styled.SearchButton variant="contained" color="secondary">
+                <Styled.SearchButton
+                  onClick={this.search}
+                  variant="contained"
+                  color="secondary">
                   <SearchIcon />
                 </Styled.SearchButton>
                 <Styled.SearchButton variant="contained" color="primary">
@@ -129,10 +139,9 @@ class Index extends Component {
           </Styled.SearchContainer>
           {PaginationComponent}
           <PokemonCardList>
-            <PokemonCard/>
-            <PokemonCard/>
-            <PokemonCard/>
-            <PokemonCard/>
+            {this.props.search.results.map((id)=>(
+              <PokemonCard id={id} key={id}/>
+            ))}
           </PokemonCardList>
           {PaginationComponent}
         </Content>
@@ -141,4 +150,13 @@ class Index extends Component {
   }
 }
 
-export default Index;
+
+function mapStateToProps(state) {
+  return {
+    search: state.search,
+  };
+}
+const actions = { ...operations };
+
+export default connect(mapStateToProps, actions)(Index);
+

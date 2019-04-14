@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { MuiThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from 'styled-components';
-import muiTheme from './utils/muiTheme';
-import styledTheme from './utils/styledTheme';
-import './App.css';
+import muiTheme from './utils/styles/muiTheme';
+import styledTheme from './utils/styles/styledTheme';
 import Header from "./components/layout/Header";
 import Body from "./components/layout/Body";
 import Main from "./components/layout/Main";
@@ -16,8 +15,6 @@ class Index extends Component {
       <MuiThemeProvider theme={muiTheme}>
         <ThemeProvider theme={styledTheme}>
           <Body className="App">
-            <Header className="App-header"/>
-            <Nav />
             <Main>
               <Routes/>
             </Main>

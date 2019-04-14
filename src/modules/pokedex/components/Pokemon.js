@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import media from '../../common/utils/styles'
+import media from '../../common/utils/styles/styles'
 const Styled = {};
 Styled.Wrapper = styled.div`
   background-color: yellow;

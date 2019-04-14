@@ -7,7 +7,7 @@ import Button from '@material-ui/core/Button';
 import Background from "../common/components/layout/Background";
 import Content from "../common/components/layout/Content";
 import Typography from "@material-ui/core/Typography";
-import fakeAuth from "../common/utils/fakeAuth";
+import fakeAuth from "../common/utils/security/fakeAuth";
 const Styled = {};
 Styled.Content = styled(Content)`
   display: flex;
