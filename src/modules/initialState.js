@@ -18,9 +18,9 @@ const initialState = {
     results: ['01'],
   },
   team: {
-    byId: {
+    byIds: {
       '01': {}
     },
-    results: ['01'],
+    list: ['01'],
   },
 };

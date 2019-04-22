@@ -97,7 +97,8 @@ class Index extends Component {
     )
   };
   
-  search = () => {
+  search = (e) => {
+    e.preventDefault();
     this.props.searchByPokemonRequest(this.state.searchInput.value, this.state.searchType)
   };
   
@@ -107,7 +108,7 @@ class Index extends Component {
         {/*<Background/>*/}
         <Content>
           <Styled.SearchContainer>
-            <form noValidate autoComplete="off">
+            <form noValidate onSubmit={this.search} autoComplete="off">
               <Grid
                 container
                 direction="row"
@@ -125,7 +126,8 @@ class Index extends Component {
                 <Styled.SearchButton
                   onClick={this.search}
                   variant="contained"
-                  color="secondary">
+                  color="secondary"
+                >
                   <SearchIcon />
                 </Styled.SearchButton>
                 <Styled.SearchButton variant="contained" color="primary">

@@ -16,7 +16,7 @@ class Nav extends Component {
     this.setState({ value });
     switch (value) {
       case 0: this.props.history.push('/search'); break;
-      case 1: this.props.history.push('/pokedex'); break;
+      case 1: this.props.history.push('/pokedex/1'); break;
       case 2: this.props.history.push('/team'); break;
       default: this.props.history.push('/search');
     }

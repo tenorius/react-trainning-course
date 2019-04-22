@@ -4,6 +4,8 @@ import Typography from "@material-ui/core/Typography/Typography";
 import Content from "../common/components/layout/Content";
 import PokemonCard from "../common/components/PokemonCard";
 import PokemonCardList from "../common/components/PokemonCardList";
+import {operations} from "../search/ducks/searchDuck";
+import connect from "react-redux/es/connect/connect";
 
 const Styled = {};
 Styled.SearchContainer = styled.div`
@@ -15,6 +17,7 @@ Styled.SearchContainer = styled.div`
 
 class Index extends Component {
   render() {
+    
     return (
       <>
         {/*<Background/>*/}
@@ -33,4 +36,11 @@ class Index extends Component {
   }
 }
 
-export default Index;
+function mapStateToProps(state) {
+  return {
+    pokemon: state.team,
+  };
+}
+const actions = { ...operations };
+
+export default connect(mapStateToProps, actions)(Index);
