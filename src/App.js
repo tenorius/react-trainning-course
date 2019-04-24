@@ -26,6 +26,7 @@ class App extends Component {
     pokemon: {
       name: '',
       sprite: '',
+      id: '',
     }
   };
   
@@ -39,9 +40,17 @@ class App extends Component {
     })
   };
   
-  search = () => {
+  getNext = () => {
+    let next = {
+      id: parseInt(this.state.pokemon.id) + 1,
+    };
+    
+    this.search(next)
+  };
+  
+  search = (param) => {
     let that = this;
-    fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.form.id}`)
+    fetch(`https://pokeapi.co/api/v2/pokemon/${param.id ? param.id : this.state.form.id}`)
       .then(function(response) {
         return response.json();
       })
@@ -49,11 +58,12 @@ class App extends Component {
         that.setState({
           pokemon: {
             name: myJson.name,
-            sprite: myJson.sprites.front_default
+            sprite: myJson.sprites.front_default,
+            id: myJson.id
           }
         })
       });
-  }
+  };
   
   render() {
     
@@ -115,12 +125,12 @@ class App extends Component {
                   </Typography>
                 </CardContent>
               </CardActionArea>
-              <CardActions>
+              <CardActions style={{justifyContent: 'space-around'}}>
                 <Button size="small" color="primary">
-                  Share
+                  previous
                 </Button>
-                <Button size="small" color="primary">
-                  Learn More
+                <Button size="small" color="primary" onClick={this.getNext}>
+                  next
                 </Button>
               </CardActions>
             </Card>
