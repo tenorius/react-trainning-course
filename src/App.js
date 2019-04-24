@@ -22,6 +22,10 @@ class App extends Component {
   state = {
     form: {
       id: ''
+    },
+    pokemon: {
+      name: '',
+      sprite: '',
     }
   };
   
@@ -36,17 +40,24 @@ class App extends Component {
   };
   
   search = () => {
+    let that = this;
     fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.form.id}`)
       .then(function(response) {
         return response.json();
       })
       .then(function(myJson) {
-        console.log(JSON.stringify(myJson));
+        that.setState({
+          pokemon: {
+            name: myJson.name,
+            sprite: myJson.sprites.front_default
+          }
+        })
       });
   }
   
   render() {
     
+    const { name, sprite } = this.state.pokemon;
     
     return (
       <div className="App">
@@ -61,6 +72,7 @@ class App extends Component {
           </Toolbar>
         </AppBar>
         <main>
+          <a href="https://fontmeme.com/pokemon-font/"><img src="https://fontmeme.com/permalink/190424/fa6a7341a255fa8880557289cc2a2708.png" alt="pokemon-font" border="0"></a>
         <Paper className="content">
           <form  noValidate autoComplete="off">
             <div className="form-control">
@@ -89,16 +101,15 @@ class App extends Component {
               <CardActionArea>
                 <CardMedia
                   className="media"
-                  image="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png"
+                  image={sprite}
                   title="Contemplative Reptile"
                 />
                 <CardContent>
                   <Typography gutterBottom variant="h5" component="h2">
-                    Lizard
+                    {name}
                   </Typography>
                   <Typography component="p">
-                    Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                    across all continents except Antarctica
+                    ????
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -113,9 +124,6 @@ class App extends Component {
             </Card>
           </section>
         </Paper>
-        
-        
-        
         </main>
       </div>
     );
