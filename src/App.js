@@ -72,7 +72,9 @@ class App extends Component {
           </Toolbar>
         </AppBar>
         <main>
-          <a href="https://fontmeme.com/pokemon-font/"><img src="https://fontmeme.com/permalink/190424/fa6a7341a255fa8880557289cc2a2708.png" alt="pokemon-font" border="0"></a>
+          <a href="https://fontmeme.com/pokemon-font/">
+            <img src="https://fontmeme.com/permalink/190424/fa6a7341a255fa8880557289cc2a2708.png" alt="pokemon-font" border="0"/>
+          </a>
         <Paper className="content">
           <form  noValidate autoComplete="off">
             <div className="form-control">
