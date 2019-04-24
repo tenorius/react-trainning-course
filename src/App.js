@@ -26,7 +26,23 @@ class App extends Component {
   };
   
   handleChange = (e) => {
+    // e.preventDefault();
     const { value } = e.target;
+    this.setState({
+      form: {
+        id: value,
+      }
+    })
+  };
+  
+  search = () => {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${this.state.form.id}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        console.log(JSON.stringify(myJson));
+      });
   }
   
   render() {
@@ -59,6 +75,7 @@ class App extends Component {
                 variant="contained"
                 color="primary"
                 className="button"
+                onClick={this.search}
               >
                 Search
               </Button>
