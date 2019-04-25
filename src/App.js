@@ -27,6 +27,7 @@ class App extends Component {
       name: '',
       sprite: '',
       id: '',
+      flavorText: ''
     }
   };
   
@@ -61,7 +62,25 @@ class App extends Component {
             sprite: myJson.sprites.front_default,
             id: myJson.id
           }
-        })
+        });
+        
+        that.getFlavorText();
+      });
+  };
+  
+  getFlavorText = () => {
+    const that = this;
+    fetch(`https://pokeapi.co/api/v2/pokemon-species/${this.state.pokemon.id}`)
+      .then(function(response) {
+        return response.json();
+      })
+      .then(function(myJson) {
+        that.setState(prevState => ({
+          pokemon: {
+            ...prevState.pokemon,
+            flavorText: myJson.flavor_text_entries.filter((flavorTextObject)=>(flavorTextObject.language.name === 'en'))[0].flavor_text
+          }
+        }))
       });
   };
   
@@ -121,7 +140,7 @@ class App extends Component {
                     {name}
                   </Typography>
                   <Typography component="p">
-                    ????
+                    {this.state.pokemon.flavorText}
                   </Typography>
                 </CardContent>
               </CardActionArea>
