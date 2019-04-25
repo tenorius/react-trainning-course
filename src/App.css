@@ -39,3 +39,27 @@ main {
 .media{
     height: 200px!important;
 }
+
+.color{
+    transition: background 1s ease-in-out;
+}
+
+.electric{
+    background: yellow;
+}
+
+.grass{
+    background: forestgreen;
+}
+
+.poison{
+    background: purple;
+}
+
+.normal{
+    background: antiquewhite;
+}
+
+.fire{
+    background: red;
+}
